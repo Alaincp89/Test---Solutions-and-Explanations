@@ -49,8 +49,8 @@ Las características clave de este proyecto incluyen:
 1. **Clonar el repositorio**:
 
     ```bash
-    [git clone https://github.com/TuUsuario/TuRepositorio.git](https://github.com/Alaincp89/Test---Solutions-and-Explanations.git)
-    cd TuRepositorio
+    [git clone https://github.com/Alaincp89/Test-Solutions-and-Explanations.git)
+    cd Test-Solutions-and-Explanations
     ```
 
 2. **Instalar dependencias**:
