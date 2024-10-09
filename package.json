@@ -1,0 +1,21 @@
+{
+  "name": "appnode_mongo",
+  "version": "1.0.0",
+  "description": "Node.js, MongoDB, Express app with Docker",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.12.2"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "supertest": "^6.3.1"
+  },
+  "author": "Alain Cervantes",
+  "license": "ISC"
+}

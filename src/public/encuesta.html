@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concurso de Series</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Tint&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="form-container">
+    <h2>Mejor serie de la historia</h2>
+    <form action="/encuesta" method="POST">
+      <fieldset>
+        <legend>Vota por tu serie favorita</legend><br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Ej. Pepito Perez" required>
+
+        <br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="ejemplo@gmail.com" required>
+
+        <br><br>
+        <label for="contrasena">Edad:</label>
+        <input type="text" id="edad" name="edad" required>
+
+        <br><br>
+        <label for="serieFavorita">Serie Favorita:</label>
+        <select id="serieFavorita" name="serieFavorita" required>
+          <option value="Ninguna"></option>  
+          <option value="Game of Thrones">Game of Thrones</option>
+          <option value="Suits">Suits</option>
+          <option value="Breaking Bad">Breaking Bad</option>
+          <option value="The Walking Dead">The Walking Dead</option>
+          <option value="Chernobyl">Chernobyl</option>
+          <option value="Los Sopranos">Los Sopranos</option>
+        </select>
+
+        <br><br>
+        <label>¿La ves en VOS?</label><br>
+        <input type="radio" name="vos" value="No" required> No<br>
+        <input type="radio" name="vos" value="Sí" required> Sí, no puedo esperar a que la traduzcan
+
+        <br><br>
+        <label>¿Desde dónde ves la serie?</label><br>
+        <input type="checkbox" name="dispositivo" value="TV"> Desde la TV<br>
+        <input type="checkbox" name="dispositivo" value="Ordenador"> Desde el ordenador<br>
+        <input type="checkbox" name="dispositivo" value="Tablet"> Desde la tablet<br>
+        <input type="checkbox" name="dispositivo" value="Celular"> Desde el Celular<br>
+        <br>
+        <label>¿Por qué amas esa serie?</label><br>
+        <textarea name="razonAmor" rows="5" cols="70" placeholder="Escribe aquí tu razón"></textarea>
+
+        <br><br>
+        <button type="submit" class="submit-button">Participar</button>
+        <button type="reset" class="reset-button">Borrar formulario</button>
+
+      </fieldset>
+    </form>
+    <br>
+  </div>
+
+  <footer>
+    <p>&copy; Copyright 2024 | Tus Series Favoritas &amp; Co.</p>
+  </footer>
+</body>
+</html>

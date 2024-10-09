@@ -1,0 +1,28 @@
+services:
+  my_node:
+    build: .
+    image: miapp:1  
+    ports:
+      - "3000:3000"
+    links:
+      - my_mongo
+    networks:
+      - mired  
+
+  my_mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=acervantes
+      - MONGO_INITDB_ROOT_PASSWORD=password 
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - mired  
+
+volumes:
+  mongo_data:
+
+networks:
+  mired:  
