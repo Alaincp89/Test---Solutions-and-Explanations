@@ -170,20 +170,29 @@ Este proyecto utiliza **Azure DevOps** para automatizar el proceso de construcci
 El siguiente diagrama representa la arquitectura del proyecto tanto a nivel local (con Minikube) como en la nube (Azure):
 
 ```plaintext
-+---------------------------------------------------+
-|                                                   |
-|      Clúster Local de Kubernetes (Minikube)       |
-|                                                   |
-|  +--------------------------------------------+   |
-|  |   Contenedor Docker (my_node)              |   |
-|  |   Contenedor Docker (my_mongo)             |   |
-|  |  +---------------------+                   |   |
-|  |  |  API Express        |                   |   |
-|  |  +---------------------+                   |   |
-|  |                                            |   |
-|  +--------------------------------------------+   |
-|                                                   |
-+---------------------------------------------------+
++------------------------------------------------------------+
+|                                                            |
+|      Clúster Local de Kubernetes (Minikube)                |
+|                                                            |
+|  +-----------------------------------------------------+   |
+|  |    Red Interna (mired)                              |   |
+|  |                                                     |   |
+|  |  +----------------------------------------------+   |   |
+|  |  |   Contenedor Docker (my_node)                |   |   |
+|  |  |   - Imagen: miapp:1                          |   |   |
+|  |  |   - Basado en Dockerfile                     |   |   |
+|  |  |   - Servicio API Express                     |   |   |
+|  |  +----------------------------------------------+   |   |
+|  |                                                     |   |
+|  |  +----------------------------------------------+   |   |
+|  |  |   Contenedor Docker (my_mongo)               |   |   |
+|  |  |   - Imagen: mongo                            |   |   |
+|  |  |   - Base de datos MongoDB                    |   |   |
+|  |  +----------------------------------------------+   |   |
+|  +-----------------------------------------------------+   |
+|                                                            |
++------------------------------------------------------------+
+
 
  |          Terraform Infra          |
 
