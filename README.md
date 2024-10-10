@@ -8,6 +8,12 @@
 [![CI/CD](https://img.shields.io/badge/CI--CD-AzureDevOps-blueviolet)](https://azure.microsoft.com/en-us/services/devops/)
 [![Terraform](https://img.shields.io/badge/Terraform-v1.3.7-623ce4)](https://www.terraform.io/)
 
+## 📄 Manual del Test Técnico
+
+Puedes descargar o visualizar el manual completo del test técnico en formato PDF aquí:
+
+[📥 Descargar Manual del Test Técnico](Test-Solutions-and-Explanations-AlainCervantes.pdf)
+
 ## 🌟 Descripción
 
 Este proyecto se ha creado una infraestructura de recursos en **Azure** utilizando **Terraform**, que incluye una máquina virtual, una base de datos, y un balanceador de carga. ademas una demostración de una **aplicación full-stack** que utiliza **MongoDB, NodeJS, Express, Docker**, y **Kubernetes (Minikube)**. 
