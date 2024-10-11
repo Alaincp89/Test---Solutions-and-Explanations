@@ -10,62 +10,36 @@ pool:
 steps:
 - checkout: self
 
-- task: DockerInstaller@0
-  displayName: 'Install Docker'
+- script: |
+    docker version
+  displayName: 'Validar version de Docker'
 
 - script: |
-    if [ "$(docker ps -a -q -f name=my_mongo)" ]; then
-      echo "Container my_mongo exists. Stopping and removing it..."
-      docker stop my_mongo
-      docker rm my_mongo
-    else
-      echo "Container my_mongo does not exist. Skipping removal."
-    fi
-  displayName: 'Check and Remove my_mongo Container'
-
-- script: |
-    if [ "$(docker ps -a -q -f name=my_node)" ]; then
-      echo "Container my_node exists. Stopping and removing it..."
-      docker stop my_node
-      docker rm my_node
-    else
-      echo "Container my_node does not exist. Skipping removal."
-    fi
-  displayName: 'Check and Remove my_node Container'
-
-- script: |
-    if [[ "$(docker images -q miapp:1 2> /dev/null)" != "" ]]; then
-      echo "Image miapp:1 exists. Deleting it..."
-      docker rmi -f miapp:1
-    else
-      echo "Image miapp:1 does not exist. Skipping deletion."
-    fi
-    echo "Building new image miapp:1 ..."
-    docker build -t miapp:1 .    
-  displayName: 'Build Docker Image'
+    echo "Creando nueva imagen miapp:1 ..."
+    docker compose build    
+  displayName: 'Crear imagen de Docker'
 
 - script: |
     docker images
-  displayName: 'Check Docker images'
+  displayName: 'Validar imágenes de Docker'
 
 - script: |
-    if [ ! "$(docker network ls | grep mired)" ]; then
-      echo "Creating network mired..."
-      docker network create mired
+    echo "Creando red mired, contenedores my_mongo y my_node..."
+    docker compose up -d
+  displayName: 'Crear red mired, contenedores my_mongo y my_node...'
+
+- script: |
+    echo "Ejecutando tests..."
+    if [ "$(docker ps -q -f name=my_node)" ]; then
+        docker exec my_node npm test
     else
-      echo "Network mired already exists, skipping creation."
+        echo "El contenedor my_node no está en ejecución. Abortando tests."
+        exit 1
     fi
-  displayName: 'Check and Create Docker Network if not exists'
-
-- script: |
-      echo "Creating MongoDB container..."
-      docker run -d -p 27017:27017 --network mired --name my_mongo -e MONGO_INITDB_ROOT_USERNAME=acervantes -e MONGO_INITDB_ROOT_PASSWORD=password mongo
-      echo "Creating Node.js container..."
-      docker run -d -p 3000:3000 --network mired --name my_node miapp:1
-  displayName: 'Create Mongo and Node containers if not exist'
-
-
-- script: |
-    echo "Running tests..."
-    docker exec my_node npm test
   displayName: 'Run Node.js tests'
+
+- script: |
+    echo "Limpiando recursos..."
+    docker compose down
+  displayName: 'Limpiar recursos'
+
